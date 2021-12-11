@@ -1,21 +1,9 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-const dbConn = require('./config/db.js')
+/**
+ * @format
+ */
 
-const user = require('./routers/userRoute.js')
-const product = require('./routers/productRouter.js')
+import {AppRegistry} from 'react-native';
+import App from './App';
+import {name as appName} from './app.json';
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-dbConn.connect();
-
-app.use("/user", user);
-app.use(product)
-
-app.listen(3000, function () {
-    console.log('Node app is running on http://localhost:3000/');
-});
-module.exports = app;
+AppRegistry.registerComponent(appName, () => App);
